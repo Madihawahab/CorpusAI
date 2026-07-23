@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Network,
   ScrollText,
+  ShieldAlert,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCorpusData } from "@/context/CorpusDataContext";
@@ -16,13 +17,14 @@ const NAV_ITEMS = [
   { to: "/negotiation", label: "Negotiation", icon: Activity },
   { to: "/analytics", label: "Analytics", icon: BarChart3 },
   { to: "/ledger", label: "Ledger", icon: ScrollText },
+  { to: "/lab", label: "Governance Lab", icon: ShieldAlert },
 ];
 
 export default function AppSidebar() {
   const { parentPageId } = useCorpusData();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-sidebar-border bg-sidebar-background/80 backdrop-blur-xl md:flex">
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-sidebar-border/35 bg-sidebar-background/15 backdrop-blur-lg backdrop-saturate-150 shadow-[inset_-1px_0_0_0_hsl(var(--foreground)/0.04)] md:flex">
       <div className="flex items-center gap-2.5 px-6 py-6">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-glow-cyan shadow-glow-violet">
           <Network size={18} className="text-primary-foreground" />
@@ -63,7 +65,7 @@ export default function AppSidebar() {
           rel="noreferrer"
           aria-disabled={!parentPageId}
           className={cn(
-            "flex items-center justify-between gap-2 rounded-lg border border-sidebar-border bg-sidebar-accent/60 px-3 py-2.5 text-xs font-medium text-sidebar-foreground transition-colors",
+            "flex items-center justify-between gap-2 rounded-lg border border-sidebar-border/35 bg-sidebar-accent/10 backdrop-blur-md px-3 py-2.5 text-xs font-medium text-sidebar-foreground transition-colors",
             parentPageId ? "hover:border-primary/40 hover:text-foreground" : "pointer-events-none opacity-50",
           )}
         >

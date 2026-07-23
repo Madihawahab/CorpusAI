@@ -27,7 +27,7 @@ export default function StatCard({
   return (
     <div
       className={cn(
-        "glass-panel flex items-center gap-4 rounded-xl p-4",
+        "glass-panel flex items-center gap-4 rounded-xl p-4 transition-transform duration-300 hover:-translate-y-0.5",
         className,
       )}
     >

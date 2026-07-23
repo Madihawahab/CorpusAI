@@ -1,6 +1,5 @@
 # Welcome to your Enter project
 
-
 [![Built with enter.pro](https://img.shields.io/badge/Build%20with-Enter.pro-FC5776?style=for-the-badge&labelColor=1F1F1F)](https://enter.pro)
 
 *Automatically synced with your [enter.pro](https://enter.pro) workspace* 

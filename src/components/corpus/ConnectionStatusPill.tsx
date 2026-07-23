@@ -17,7 +17,7 @@ export default function ConnectionStatusPill({ status, className }: ConnectionSt
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1.5 text-xs font-medium",
+        "flex items-center gap-2 rounded-full border border-border/30 bg-card/10 px-3 py-1.5 text-xs font-medium backdrop-blur-md",
         className,
       )}
     >

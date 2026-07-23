@@ -32,7 +32,7 @@ export default function AppTopbar() {
   const copy = TITLES[location.pathname] ?? TITLES["/"];
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-border/60 bg-background/70 px-4 py-4 backdrop-blur-xl md:px-8">
+    <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-border/30 bg-background/10 px-4 py-4 backdrop-blur-lg backdrop-saturate-150 md:px-8">
       <div className="min-w-0">
         <h1 className="truncate text-lg font-bold tracking-tight md:text-xl">{copy.title}</h1>
         <p className="hidden truncate text-xs text-muted-foreground sm:block">{copy.subtitle}</p>

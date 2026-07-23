@@ -4,6 +4,7 @@ import AgentNetwork from "./pages/AgentNetwork";
 import Negotiation from "./pages/Negotiation";
 import Analytics from "./pages/Analytics";
 import Ledger from "./pages/Ledger";
+import GovernanceLab from "./pages/GovernanceLab";
 import NotFound from "./pages/NotFound";
 
 export const routers = [
@@ -16,6 +17,7 @@ export const routers = [
       { path: "negotiation", name: "negotiation", element: <Negotiation /> },
       { path: "analytics", name: "analytics", element: <Analytics /> },
       { path: "ledger", name: "ledger", element: <Ledger /> },
+      { path: "lab", name: "governance-lab", element: <GovernanceLab /> },
     ],
   },
   /* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */

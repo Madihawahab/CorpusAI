@@ -1,151 +1,132 @@
-# Welcome to your Enter project
+# CorpusAI — Premium Multi-Agent OS Command Center & Governance Lab
 
 [![Built with enter.pro](https://img.shields.io/badge/Build%20with-Enter.pro-FC5776?style=for-the-badge&labelColor=1F1F1F)](https://enter.pro)
+[![React](https://img.shields.io/badge/React-19.0-blue?style=flat-square)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38bdf8?style=flat-square)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green?style=flat-square)](https://supabase.com/)
 
-*Automatically synced with your [enter.pro](https://enter.pro) workspace* 
+CorpusAI is a premium, multi-agent enterprise operating system and command-center dashboard. It provides a visual interface to monitor, audit, and interact with autonomous AI agents (Marketing, Finance, Engineering, and Orchestrator) executing corporate initiatives. 
 
----
-
-## Overview
-
-This repository is automatically linked to your app on [enter.pro](https://enter.pro).  
-Every change you make in Enter will be reflected here — and any updates you push to this repo will sync back seamlessly.  
-
-Enter.pro helps you **build, edit, and deploy full-stack web apps by prompting**.  
-Just describe what you want — Enter turns ideas into production-ready code.
+The project consists of two core components:
+1. **Core Command-Center Dashboard**: Links to a live, external Multi-Agent backend via WebSockets/REST APIs to track live initiatives, state transitions, agent negotiations, and resource lineages.
+2. **Governance & Security Lab Subsystem**: A premium sandbox simulation environment backed by Supabase (Postgres, Edge Functions, and LLM orchestration) built to model policy verification, self-amending constitutions, Nash bargaining, adversarial red-teaming, boardroom escalation, and time-travel debugging.
 
 ---
 
-## Project URLs
+## 🚀 Key Features
 
-**Live app:** https://<project-id>-latest.preview.enter.pro  
-**Edit & build in Enter:** https://enter.pro/project/<project-id>
+### 1. Core Command-Center
+- **Command Deck**: Kickoff new campaigns and track active initiatives through an animated Orchestrator FSM timeline (Marketing $\rightarrow$ Finance $\rightarrow$ Sign-off $\rightarrow$ Ratified).
+- **Interactive Lineage Graph**: A force-directed D3 network graph mapping communications, data flow, and lineage relationships between sub-agents.
+- **Negotiation Hub**: Observe real-time agent-to-agent negotiations with collapsible "Agent Thoughts" cards highlighting underlying reasoning.
+- **Activity Terminal**: Monospace activity feed tracking system execution logs.
+- **Autonomy Gauge & Analytics**: Telemetry cards and Recharts analytics displaying resource spending, token usage, and system autonomy percentages.
 
+### 2. Governance & Security Lab (`/lab`)
+- **Policy Sandbox**: Adjust constitutional bounds (spending caps, strict mode, variance tolerance) in real-time.
+- **Nash Bargaining Kernel**: Runs mathematical budget resolution between Marketing and Finance, plotting converging offers and tracking bargaining efficiency.
+- **Adversarial Immune System**: Launches red-team attacks using term-frequency (TF) cosine similarity vectors to filter and block injections, dynamically learning from breaches to shrink the future attack surface.
+- **Boardroom Debate Escalation**: Triggers three-persona boardroom discussions (Optimist, Auditor, Safety Advocate) when expenditures exceed safety limits.
+- **Time-Travel Debugger**: A history scrubber allowing operators to rollback the entire dashboard state to inspect rules, blocklist versions, and decisions at any historical timestamp.
 
 ---
 
-## Continue building
+## 🛠️ Technology Stack
 
-Keep developing your app directly in [Enter.pro](https://enter.pro/project/<project-id>).  
-Prompt new features, refine the UI, or connect integrations — all changes are versioned and synced automatically to GitHub.
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, shadcn/ui, Recharts, D3.js, framer-motion.
+- **Backend & Database**: Supabase PostgreSQL, Deno-based Edge Functions, and Gemini / OpenAI-compatible Chat Completions API.
+- **Localization**: Built-in browser-side i18n support utilizing `i18next` and `react-i18next`.
 
 ---
 
-## Local development
+## ⚙️ Local Development Setup
 
-Prefer to work locally? You can clone this repo and start developing right away:
+To clone, set up, and run the project locally, follow these steps:
 
+### 1. Install Dependencies
+Make sure you have Node.js and `pnpm` installed.
 ```bash
-# Step 1: Clone your project repository
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/Madihawahab/CorpusAI.git
+cd CorpusAI
 
-# Step 2: Navigate into the project folder
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install all dependencies
+# Install dependencies
 pnpm install
+```
 
-# Step 4: Start the local development server
+### 2. Configure Environment Variables
+Copy `.env.example` to `.env` and fill in your Supabase variables for the Governance Lab:
+```env
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
+```
+
+### 3. Deploy Database Migrations & Edge Functions
+If you are modifying the Governance Lab database tables or Deno Edge Functions, configure them using the Supabase CLI:
+```bash
+# Link to your Supabase project
+supabase link --project-ref your-project-id
+
+# Push migrations to Postgres
+supabase db push
+
+# Set LLM API Key on Supabase Edge Function Secrets
+supabase secrets set LLM_API_KEY=sk-proj-...
+# Optional: Set custom model / API endpoint base
+supabase secrets set LLM_MODEL=gpt-4o-mini
+supabase secrets set LLM_API_BASE=https://api.openai.com/v1
+
+# Deploy Edge Functions
+supabase functions deploy
+```
+
+### 4. Run Locally
+Start the local Vite development server:
+```bash
 pnpm dev
 ```
-
-Push your commits — Enter.pro will automatically detect and sync your latest changes.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## i18n
+## 📂 Codebase Folder Structure
 
-This template ships a minimal browser-side i18n baseline built on:
-
-- `i18next`
-- `react-i18next`
-- `i18next-http-backend`
-- `i18next-browser-languagedetector`
-
-### Source-of-truth files
-
-The template only owns three pieces of i18n data:
-
-- `i18n.config.json` — language manifest (`fallbackLng`, `languages[].{code,label,detect,dir}`)
-- `public/locales/{code}.json` — flat dotted-key translations, one file per language
-- `src/i18n/config.ts` + `src/i18n/util.ts` — runtime entry and pure helpers
-- `src/components/language-switcher.tsx` — neutral-themed UI sample
-
-### Runtime behavior
-
-- reads the manifest from `i18n.config.json`
-- loads translations from `public/locales/{code}.json` via `i18next-http-backend`
-- detects language from cookie, browser, then html tag; caches in the `i18next` cookie
-- normalizes unsupported languages to `fallbackLng` (no invalid values stored in cookies)
-- syncs `<html lang>` and `<html dir>` on init and on `languageChanged`
-- treats keys as flat strings: both `keySeparator` and `nsSeparator` are disabled
-
-### Using translations in components
-
-Import directly from `react-i18next`. No project-specific hook or cast is needed.
-
-```tsx
-import { useTranslation } from "react-i18next";
-
-const Title = () => {
-  const { t } = useTranslation();
-  return <h1>{t("home.hero.title")}</h1>;
-};
+```
+enter_CorpusAI/
+├── .enter/                  # Enter project configurations and auto-plans
+├── public/                  # Static assets and i18n locale files
+├── src/                     # Core React codebase
+│   ├── components/          # Reusable UI widgets
+│   │   ├── corpus/          # Core operational dashboard widgets
+│   │   ├── lab/             # Governance Lab widgets
+│   │   └── ui/              # Restyled shadcn/ui primitives
+│   ├── context/             # Global state contexts (Corpus, Lab)
+│   ├── lib/                 # Core API connectors and algorithms
+│   │   ├── corpus/          # Core dashboard typings and fetch clients
+│   │   └── lab/             # Supabase client wrapper and API methods
+│   ├── pages/               # Page entry points (CommandDeck, GovernanceLab, etc.)
+│   ├── App.tsx              # Root component wrapping routing and clients
+│   └── index.css            # Custom CSS styling tokens and glassmorphism styling
+├── supabase/                # Local Supabase project files
+│   ├── functions/           # Deno Edge Functions
+│   │   ├── _shared/         # Math, LLM, CORS, and Database clients
+│   │   ├── lab-bargain/     # Nash bargaining orchestrator
+│   │   ├── lab-verify/      # Policy compliance verifier
+│   │   ├── lab-redteam/     # Red-team vector similarity checks
+│   │   └── ... (others)     # Boardroom, Watch, History, and Demo functions
+│   └── migrations/          # SQL database migrations
+└── package.json             # Build script configurations and dependencies
 ```
 
-For language switching, the `i18n` instance also comes from `useTranslation()`:
+---
 
-```tsx
-const { i18n } = useTranslation();
-void i18n.changeLanguage("zh-CN");
-```
+## 📡 Live APIs
 
-`languageOptions`, `normalizeLanguage`, `getLanguageDirection`, and `fallbackLng` can be imported from `@/i18n/config` (re-exports from `util.ts`).
-
-### Adding a language
-
-1. Add an entry under `languages` in `i18n.config.json` with `code`, `label`, `detect`, `dir`.
-2. Create `public/locales/{code}.json` with the same key set as `public/locales/{fallbackLng}.json`.
-3. Translate values, preserving any `{{variables}}` and `<tag>...</tag>` structures.
-
-### Adding a translation key
-
-1. Add the key to `public/locales/{fallbackLng}.json` first.
-2. Add the same key to every other locale file with its translated value.
-3. Use it via `t("group.key")` in components.
-
-### Backend handoff (temporary in-repo files)
-
-The following files are **temporary copies kept in the repo only until backend integration is complete**. The backend will eventually own validation, statistics, completion-rate dashboards, scan-for-new-strings, and auto-translate. After that integration lands, these files (and the corresponding `package.json` scripts) will be removed:
-
-- `scripts/check-i18n.mjs`, `scripts/scan-i18n.mjs`, `scripts/i18n-utils.mjs`, `scripts/i18n-source-usage.mjs`
-- `i18n.scan.json`
-- `reports/i18n/`
-- `docs/i18n-agent-spec.md`, `docs/i18n-contract.md`
-- `package.json` scripts: `i18n:check`, `i18n:scan`, and the `check` aggregate
-
-Until removed, you can still run `pnpm i18n:check` and `pnpm i18n:scan` locally; the canonical computation is the backend's responsibility.
+- **Live Command-Center API**: `https://corpusai-2ftb.onrender.com`
+- **Live Command-Center WebSockets**: `wss://corpusai-2ftb.onrender.com`
+- **Governance Lab Subsystem**: Serverless endpoints hosted on your configured Supabase project.
 
 ---
 
-## Tech stack
-
-This project uses:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
----
-
-## Deployment
-
-To deploy, open your Enter.pro project and click "Publish"
-
-Your app will automatically build and go live at your production URL.
-
----
-
-✨ Keep prompting, keep building — Enter.pro handles the rest.
+## 📖 Complete Documentation
+For an E2E architect-level breakdown of the database schemas, mathematical equations, security classification, user flows, and state management, please refer to the **[Technical System Architecture & Documentation Guide](C:/Users/madih/.gemini/antigravity-ide/brain/7029651f-1565-48bd-9f9d-dd49cb8cb333/technical_system_architecture_doc.md)**.
